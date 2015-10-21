@@ -49,12 +49,15 @@ plot1_data <- base_data %>%
     summarise(emissions = sum(Emissions))
 
 # Ploting the Emissions by year:
-barplot(plot1_data$emissions, plot1_data$year, names.arg=plot1_data$year)
+png(file="plot1.png")
+barplot(plot1_data$emissions, plot1_data$year, names.arg=plot1_data$year,
+        main="Emissions of PM2.5 from all sources, on US")
+dev.off()
 
 # Based on the plotted graph, we can say that the Emissions of PM2.5 on US,
 # from all sources, have decreased from 1999 to 2008.
 
-
+#################
 #### PLOT 2 #####
 # Question: Have total emissions from PM2.5 decreased in the Baltimore City,
 # Maryland (fips == "24510") from 1999 to 2008? Use the base plotting system
@@ -75,7 +78,10 @@ plot2_data <- base_data %>%
     summarise(emissions = sum(Emissions))
 
 # Ploting the Emissions by year:
-barplot(plot2_data$emissions, plot2_data$year, names.arg=plot2_data$year)
+png(file="plot2.png")
+barplot(plot2_data$emissions, plot2_data$year, names.arg=plot2_data$year,
+        main="Emissions of PM2.5 from all sources, on Baltimore City")
+dev.off()
 
 # Based on the plotted graph, we can not say that the Emissions of PM2.5,
-# from all sources, have decreased from 1999 to 2008.
+# from all sources, have decreased from 1999 to 2008 in Baltimore City.
