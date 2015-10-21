@@ -16,6 +16,10 @@
 # Setting current directory where data is stored
 setwd("~/Cursos/coursera-exploratoryDataAnalysis/PA2")
 
+# Download data from:
+# https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip
+# and unzip it on the same folder where this code is.
+
 # Setting local language to english instead of portguese:
 Sys.setlocale("LC_TIME","C")
 
@@ -73,5 +77,5 @@ plot2_data <- base_data %>%
 # Ploting the Emissions by year:
 barplot(plot2_data$emissions, plot2_data$year, names.arg=plot2_data$year)
 
-# Based on the plotted graph, we can say that the Emissions of PM2.5 on US,
+# Based on the plotted graph, we can not say that the Emissions of PM2.5,
 # from all sources, have decreased from 1999 to 2008.
