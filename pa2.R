@@ -85,3 +85,40 @@ dev.off()
 
 # Based on the plotted graph, we can not say that the Emissions of PM2.5,
 # from all sources, have decreased from 1999 to 2008 in Baltimore City.
+
+
+#################
+#### PLOT 3 #####
+# Question: Of the four types of sources indicated by the type
+# (point, nonpoint, onroad, nonroad) variable, which of these four sources
+# have seen decreases in emissions from 1999–2008 for Baltimore City?
+# Which have seen increases in emissions from 1999–2008? Use the ggplot2
+# plotting system to make a plot answer this question.
+
+# Loading ggplot library
+library('ggplot2')
+
+### Evaluating PM25 by year in Baltimore City
+# Calculating the sum of emissions of PM25 by year
+plot3_data <- base_data %>%
+    # First filter data to Baltimore (fips=='24510')
+    filter(fips=="24510") %>%
+    # Then select only Pollutant, Emissions and year columns
+    select(Pollutant, Emissions, year, type) %>%
+    # Now filter by Pollutant equal to PM25-PRI
+    filter(Pollutant=="PM25-PRI") %>%
+    # Grouping data by type and year
+    group_by(type, year) %>%
+    # Summarizing data by year as the sum of all data from that year
+    summarise(emissions = sum(Emissions))
+
+# Ploting the Emissions by year:
+png(file="plot3.png")
+ggplot(plot3_data, aes(x=as.character(year), y=emissions)) +
+    geom_bar(aes(fill=type), position="dodge", stat="identity") +
+    facet_wrap(~type)
+dev.off()
+
+# Based on the plotted graph, the yearly emissions of NONPOINT,
+# NON-ROAD and ON-ROAD has decreased between 1999 and 2008, while
+# the yearly emissions of POINT has increased.
